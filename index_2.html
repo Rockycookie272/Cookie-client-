@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071629">
+<title>Cookie Client — Bake the Meta</title>
+<style>
+:root{--bg:#061225;--panel:#0b1d36;--panel2:#102746;--blue:#56a8ff;--ice:#c8e4ff;--muted:#91a9c5;--line:#23466e;--cookie:#c88745}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#173e68 0%,transparent 55%),var(--bg);color:#f3f8ff;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #183554}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.09em}.brand-mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#f0bd79,#a95c2d);display:grid;place-items:center;font-size:22px;box-shadow:0 6px 24px #b8753d55}
+.navlinks{display:flex;gap:28px;color:var(--muted);font-size:14px}.navlinks a:hover{color:white}
+.pill{border:1px solid #3b6694;background:#112b49;padding:9px 14px;border-radius:99px;color:#b8dcff;font-size:12px;font-weight:800;letter-spacing:.08em}
+.hero{padding:86px 0 74px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:42px}
+.eyebrow{color:#82bdff;font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase}
+h1{font-size:clamp(48px,7vw,82px);line-height:.98;letter-spacing:-.065em;margin:18px 0}h1 span{color:#8cc6ff}
+.lead{color:#a9bdd5;line-height:1.75;font-size:17px;max-width:530px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:12px;font-weight:800;font-size:14px;border:1px solid var(--line);transition:.2s}.btn.primary{background:linear-gradient(135deg,#5baeff,#2873c5);color:#061225;border:0;box-shadow:0 10px 30px #2b82d455}.btn.secondary{background:#10243d;color:#d9ebff}.btn:hover{transform:translateY(-2px);filter:brightness(1.12)}
+.cookie-stage{min-height:350px;border:1px solid #28517a;border-radius:30px;background:linear-gradient(145deg,#17395d,#0a1b31 70%);display:grid;place-items:center;position:relative;overflow:hidden;box-shadow:0 25px 80px #0006}
+.cookie-stage:before,.cookie-stage:after{content:"";position:absolute;width:220px;height:220px;border:1px solid #5b8bb455;border-radius:50%}.cookie-stage:after{width:300px;height:300px}
+.cookie{width:220px;height:220px;border-radius:50%;position:relative;background:radial-gradient(circle at 35% 25%,#e6b779,#bd7940 72%,#8b4c27);box-shadow:inset -15px -18px 0 #713b2555,0 25px 45px #0008;transform:rotate(-13deg);z-index:1}
+.chip{position:absolute;width:21px;height:25px;background:#493025;border-radius:45% 55% 50% 40%;box-shadow:inset 3px 2px 0 #75503a}
+.chip:nth-child(1){top:28px;left:58px}.chip:nth-child(2){top:75px;left:145px;width:17px;height:21px}.chip:nth-child(3){top:145px;left:78px;width:24px;height:18px}.chip:nth-child(4){top:110px;left:35px;width:15px;height:20px}.chip:nth-child(5){top:38px;left:125px;width:14px;height:17px}.chip:nth-child(6){top:155px;left:155px;width:17px;height:20px}.chip:nth-child(7){top:100px;left:100px;width:22px;height:25px}
+.floating{position:absolute;z-index:2;font-size:34px;filter:drop-shadow(0 8px 12px #0008)}.f1{top:18%;left:15%;transform:rotate(-20deg)}.f2{right:12%;bottom:18%;transform:rotate(18deg);font-size:25px}
+.stage-label{position:absolute;bottom:20px;left:24px;color:#9fc8ef;font-size:11px;letter-spacing:.16em;font-weight:900}
+section{padding:65px 0}.section-head{text-align:center;margin-bottom:34px}.section-head h2{font-size:36px;letter-spacing:-.04em;margin:10px 0}.section-head p{color:var(--muted);margin:0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:linear-gradient(145deg,#102744,#09192d);border:1px solid #1e4167;border-radius:18px;padding:24px}.card-icon{font-size:26px}.card h3{margin:16px 0 8px}.card p{color:#9db2cc;line-height:1.65;font-size:14px;margin:0}
+.preview{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}.preview-box{background:#0b1d34;border:1px solid #24476d;border-radius:20px;padding:26px;min-height:210px}.preview-box h3{margin-top:0}.preview-box p{color:var(--muted);line-height:1.7}
+.status{display:inline-flex;gap:8px;align-items:center;color:#a9d7ff;font-size:12px;font-weight:800;letter-spacing:.1em}.dot{width:8px;height:8px;background:#65d99a;border-radius:50%;box-shadow:0 0 12px #65d99a}
+.cta{text-align:center;background:linear-gradient(135deg,#15385d,#0b1c32);border:1px solid #2b527b;border-radius:26px;padding:48px 22px}.cta h2{font-size:38px;margin:12px 0}.cta p{color:#a9bdd5}
+footer{padding:30px 0 40px;color:#718aa8;font-size:12px;border-top:1px solid #183554;margin-top:65px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:760px){.navlinks{display:none}.hero{grid-template-columns:1fr;padding:60px 0 35px;gap:30px}.cookie-stage{min-height:290px}.cookie{width:190px;height:190px}.cards{grid-template-columns:1fr}.preview{grid-template-columns:1fr}section{padding:48px 0}footer{margin-top:40px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a class="brand" href="#"><span class="brand-mark">🍪</span><span>COOKIE CLIENT</span></a>
+  <div class="navlinks"><a href="#features">Features</a><a href="#preview">Preview</a><a href="#download">Download</a></div>
+  <span class="pill">COMING SOON</span>
+</nav>
+<main>
+<section class="hero">
+  <div>
+    <div class="eyebrow">A fresh take on multiplayer</div>
+    <h1>BAKE THE<br><span>META.</span></h1>
+    <p class="lead">Meet Cookie Client. A new Minecraft multiplayer client is in the works, bringing a clean experience and a little extra crunch. More details dropping soon.</p>
+    <div class="actions"><a class="btn primary" href="#features">Explore the client</a><a class="btn secondary" href="#download">Release updates</a></div>
+  </div>
+  <div class="cookie-stage" aria-label="Chocolate chip cookie illustration">
+    <span class="floating f1">✦</span><span class="floating f2">✧</span>
+    <div class="cookie"><i class="chip"></i><i class="chip"></i><i class="chip"></i><i class="chip"></i><i class="chip"></i><i class="chip"></i><i class="chip"></i></div>
+    <div class="stage-label">FRESHLY BAKED • IN DEVELOPMENT</div>
+  </div>
+</section>
+<section id="features">
+  <div class="section-head"><div class="eyebrow">What's cooking</div><h2>Built for your next session</h2><p>A first look at what Cookie Client is aiming to bring.</p></div>
+  <div class="cards">
+    <article class="card"><div class="card-icon">⚡</div><h3>Clean experience</h3><p>A simple, organized interface designed to keep things easy to navigate.</p></article>
+    <article class="card"><div class="card-icon">🎛️</div><h3>Client features</h3><p>A growing collection of configurable features. The full list will be announced closer to release.</p></article>
+    <article class="card"><div class="card-icon">🧊</div><h3>Cool blue style</h3><p>A crisp dark-blue look with cookie-inspired details and a Minecraft feel.</p></article>
+  </div>
+</section>
+<section id="preview">
+  <div class="section-head"><div class="eyebrow">The first bite</div><h2>More coming soon</h2><p>Development updates and screenshots will land here.</p></div>
+  <div class="preview">
+    <div class="preview-box"><div class="status"><span class="dot"></span> DEVELOPMENT STATUS</div><h3>Currently in the oven</h3><p>Cookie Client is being prepared. Supported versions, feature details and installation instructions will be posted once they are confirmed.</p></div>
+    <div class="preview-box"><div class="eyebrow">SERVER READY?</div><h3>Multiplayer focused</h3><p>Designed with multiplayer sessions in mind. Always follow each server's rules and only use features that server allows.</p></div>
+  </div>
+</section>
+<section id="download">
+  <div class="cta"><div class="eyebrow">Don't miss the drop</div><h2>Fresh cookies soon.</h2><p>The download isn't available yet. Check back for the official release announcement.</p><span class="pill">DOWNLOAD NOT AVAILABLE YET</span></div>
+</section>
+</main>
+<footer><span>🍪 COOKIE CLIENT</span><span>Unofficial fan-made project page • Not affiliated with Mojang or Microsoft</span><span>© 2026</span></footer>
+</div>
+</body>
+</html>
